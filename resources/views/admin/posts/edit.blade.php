@@ -42,11 +42,11 @@
             </div>
             <div class="col-8 form-group">
                 <label for="category_id">Category</label>
-                <select name="category_id" class="form-select">
-                    <option>Select Category</option>
+                <select name="category_id" class="form-select" id="category_id">
+                    <option value="">Select Category</option>
                     @foreach ($categories as $category)
                         <option
-                        @if ($category->id == old('category_id', $post->category->id)) selected @endif
+                        @if ($category->id == old('category_id', $post->category_id)) selected @endif
                         value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>

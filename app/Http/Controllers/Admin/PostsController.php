@@ -103,7 +103,7 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post, Category $category)
     {
         $request->validate(
             [
@@ -120,6 +120,9 @@ class PostsController extends Controller
         $data = $request->all();
         if($data['title'] != $post->title){
             $data['slug'] = Post::createSlug($data['title']);
+        }
+        if($data['category_id'] != $category->id){
+            $data['category_id'] = null;
         }
         $post->update($data);
 

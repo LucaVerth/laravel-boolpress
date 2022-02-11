@@ -1,12 +1,14 @@
 <template>
     <div class="post-card">
-        <div class="post-img">img Placeholder</div>
+        <div class="post-img">
+            <img src="" alt="img...">
+        </div>
         <div class="post-content">
             <router-link
                 :to="{ name: 'detail', params: { slug: post.slug } }"
                 >{{ post.title }}</router-link
             >
-            <h5>{{ post.category.name }}</h5>
+            <h5 v-if="post.category">{{ post.category.name }}</h5>
             <span v-for="(tag, index) in post.tags" :key="index">{{tag.name}}</span>
             <p class="main-content-post">
                 {{ extractText }}
@@ -19,6 +21,7 @@
 </template>
 
 <script>
+
 import dayjs from "dayjs";
 
 export default {
@@ -45,5 +48,8 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     background-color: grey;
+    .post-content {
+        padding: 1rem;
+    }
 }
 </style>

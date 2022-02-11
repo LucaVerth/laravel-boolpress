@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <main class="container">
       <h3>Error 404</h3>
       <p>Page not found.</p>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -11,6 +11,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+main{
+    min-height: calc(100vh - 210px);
+}
 </style>
