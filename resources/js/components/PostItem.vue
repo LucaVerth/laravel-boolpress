@@ -1,15 +1,15 @@
 <template>
     <div class="post-card">
-        <div class="post-img">
+        <!-- <div class="post-img">
             <img src="" alt="img...">
-        </div>
+        </div> -->
         <div class="post-content">
             <router-link
                 :to="{ name: 'detail', params: { slug: post.slug } }"
                 >{{ post.title }}</router-link
             >
             <h5 v-if="post.category">{{ post.category.name }}</h5>
-            <span v-for="(tag, index) in post.tags" :key="index">{{tag.name}}</span>
+            <!-- <span v-for="(tag, index) in post.tags" :key="index">{{tag.name}}</span> -->
             <p class="main-content-post">
                 {{ extractText }}
             </p>

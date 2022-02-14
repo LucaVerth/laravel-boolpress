@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <main class="container">
         <div v-if="post">
             <h3>{{ post.title }}</h3>
             <h4 v-if="post.category">Category: {{ post.category.name }}</h4>
@@ -12,7 +12,7 @@
             </p>
         </div>
         <div v-else>Loading...</div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -45,5 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+main{
+    height: calc(100vh - 210px);
+}
 </style>

@@ -1,85 +1,148 @@
 <template>
-  <main>
-      <div class="container">
-          <div class="posts-container">
-              <div class="posts-grid"
-                v-if="posts"
-              >
-                  <PostItem
-                    v-for="post in posts"
-                    :key="post.id"
-                    :post="post"
-                  />
-              </div>
+    <main>
+        <div class="container">
+            <div class="posts-container">
+                <PostFilter
+                    :category="category"
+                    :tags="tags"
+                    @getCategoryPosts="getPostsCategory"
+                    @getTagPosts="getPostsTags"
+                    @filterReset="getPosts"
+                />
+                <div class="posts-grid" v-if="posts">
+                    <PostItem
+                        v-for="post in posts"
+                        :key="post.id"
+                        :post="post"
+                    />
+                </div>
 
-              <div
-                v-else
-              >Loading...</div>
-              <button @click="getPosts(pages.current - 1)" :disabled="pages.current === 1" class="btn bg_blue">Prev</button>
-              <button v-for="page in pages.last" :key="page" @click="getPosts(page)" :disabled="page === pages.current" class="btn">{{page}}</button>
-              <button @click="getPosts(pages.current + 1)" :disabled="pages.current === pages.last" class="btn bg_blue">Next</button>
-          </div>
-      </div>
-  </main>
+                <div v-else>Loading...</div>
+                <div v-if="globalPosts">
+                    <button
+                        @click="getPosts(pages.current - 1)"
+                        :disabled="pages.current === 1"
+                        class="btn bg_blue"
+                    >
+                        Prev
+                    </button>
+                    <button
+                        v-for="page in pages.last"
+                        :key="page"
+                        @click="getPosts(page)"
+                        :disabled="page === pages.current"
+                        class="btn"
+                    >
+                        {{ page }}
+                    </button>
+                    <button
+                        @click="getPosts(pages.current + 1)"
+                        :disabled="pages.current === pages.last"
+                        class="btn bg_blue"
+                    >
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
 </template>
 
 <script>
-
-import PostItem from './PostItem.vue';
+import PostItem from "./PostItem.vue";
+import PostFilter from "./PostFilter.vue";
 
 export default {
-    name: 'Posts',
-    components:{
+    name: "Posts",
+    components: {
         PostItem,
+        PostFilter,
     },
-    data(){
+    data() {
         return {
-            apiUrl: 'http://127.0.0.1:8000/api/posts?page=',
+            apiUrl: "http://127.0.0.1:8000/api/posts",
             posts: null,
-            pages: {}
-
-        }
+            pages: {},
+            category: [],
+            tags: [],
+            success: true,
+            error: "",
+            globalPosts: true,
+        };
     },
-    mounted(){
+    mounted() {
         this.getPosts();
     },
-    methods:{
-        getPosts(page = 1){
-            this.post = null;
-            axios.get(this.apiUrl + page)
-            .then(res=>{
-                this.posts = res.data.data;
-                this.pages = {
-                    current : res.data.current_page,
-                    last : res.data.last_page
+    methods: {
+        getPosts(page = 1) {
+            this.reset();
+            this.globalPosts = true;
+            axios
+                .get(this.apiUrl + "?page=" + page)
+                .then((res) => {
+                    this.posts = res.data.post.data;
+                    this.category = res.data.category;
+                    this.tags = res.data.tags;
+                    this.pages = {
+                        current: res.data.post.current_page,
+                        last: res.data.post.last_page,
+                    };
+                    // console.log(this.category);
+                    // console.log(this.tags);
+                    // console.log(this.posts);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+        getPostsCategory(slug_category) {
+            this.reset();
+            axios
+                .get(this.apiUrl + "/postcategory/" + slug_category)
+                .then((res) => {
+                    this.posts = res.data.category.posts;
+                    this.globalPosts = false;
+                    if (!res.data.success) {
+                        this.error = res.data.error;
+                        this.success = false;
+                    }
+                });
+        },
+        getPostsTags(slug_tag) {
+            this.reset();
+            axios.get(this.apiUrl + "/posttag/" + slug_tag).then((res) => {
+                this.posts = res.data.tags.posts;
+                this.globalPosts = false;
+                if (!res.data.success) {
+                    this.error = res.data.error;
+                    this.success = false;
                 }
-                console.log(this.posts);
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-        }
+            });
+        },
+        reset() {
+            this.error = "";
+            this.success = true;
+            this.posts = null;
+        },
     },
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
-main{
+main {
     min-height: calc(100vh - 210px);
     // background-color: gold;
-    .posts-container{
+    .posts-container {
         padding: 3rem 0;
-        .posts-grid{
+        .posts-grid {
             display: grid;
             gap: 1.3rem;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: auto;
         }
-
-        .btn{
+        .btn {
             margin: 1.5rem 0.25rem;
-            &:hover{
+            &:hover {
                 background-color: #438cfa;
             }
         }
