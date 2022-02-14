@@ -2413,7 +2413,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".filter-container[data-v-63afae3a] {\n  display: flex;\n  align-items: center;\n}\n.filter-container .filters[data-v-63afae3a] {\n  display: flex;\n  justify-content: space-around;\n}\n.filter-container .filters .category[data-v-63afae3a],\n.filter-container .filters .tags[data-v-63afae3a] {\n  width: 50%;\n  margin: 1.5rem;\n  text-align: center;\n  border: 1px solid cadetblue;\n  border-radius: 0.3rem;\n}\n.filter-container .filters .category span[data-v-63afae3a],\n.filter-container .filters .tags span[data-v-63afae3a] {\n  display: inline-block;\n  margin: 0.2rem;\n  padding: 0.15rem;\n  background-color: rgba(27, 93, 95, 0.5);\n  border-radius: 0.35rem;\n  cursor: pointer;\n}\n.filter-container .filters .category span[data-v-63afae3a]:hover,\n.filter-container .filters .tags span[data-v-63afae3a]:hover {\n  background-color: cadetblue;\n}\n.filter-container .filter-reset[data-v-63afae3a] {\n  max-height: 40px;\n}\n.filter-container .filter-reset[data-v-63afae3a]:hover {\n  background-color: #438cfa;\n}", ""]);
+exports.push([module.i, ".filter-container[data-v-63afae3a] {\n  display: flex;\n  align-items: center;\n}\n.filter-container .filters[data-v-63afae3a] {\n  display: flex;\n  justify-content: space-around;\n}\n.filter-container .filters .category[data-v-63afae3a],\n.filter-container .filters .tags[data-v-63afae3a] {\n  width: 50%;\n  margin: 1.5rem;\n  text-align: center;\n  border: 1px solid cadetblue;\n  border-radius: 0.3rem;\n}\n.filter-container .filters .category span[data-v-63afae3a],\n.filter-container .filters .tags span[data-v-63afae3a] {\n  display: inline-block;\n  margin: 0.2rem;\n  padding: 0.15rem;\n  color: #fff;\n  background-color: #42b883;\n  border-radius: 0.35rem;\n  cursor: pointer;\n}\n.filter-container .filters .category span[data-v-63afae3a]:hover,\n.filter-container .filters .tags span[data-v-63afae3a]:hover {\n  background-color: cadetblue;\n}\n.filter-container .filter-reset[data-v-63afae3a] {\n  max-height: 40px;\n}\n.filter-container .filter-reset[data-v-63afae3a]:hover {\n  background-color: #438cfa;\n}", ""]);
 
 // exports
 
@@ -2432,7 +2432,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".post-card[data-v-3d1b2bbe] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  background-color: grey;\n}\n.post-card .post-content[data-v-3d1b2bbe] {\n  padding: 1rem;\n}", ""]);
+exports.push([module.i, ".post-card[data-v-3d1b2bbe] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  background-color: rgba(128, 128, 128, 0.418);\n  border: 1px solid transparent;\n  border-radius: 10px;\n  box-shadow: 5px 5px 20px;\n}\n.post-card .post-content[data-v-3d1b2bbe] {\n  padding: 1rem;\n}\n.post-card .post-content a[data-v-3d1b2bbe] {\n  text-decoration: none;\n  color: #000;\n  font-weight: bold;\n}\n.post-card .post-content a[data-v-3d1b2bbe]:hover {\n  text-decoration: underline;\n  color: #438cfa;\n}\n.post-card .post-details[data-v-3d1b2bbe] {\n  text-align: left;\n  padding-left: 1rem;\n  padding-bottom: 0.5rem;\n}", ""]);
 
 // exports
 
@@ -4157,7 +4157,7 @@ var render = function () {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "post-details" }, [
-      _vm._v("\n        " + _vm._s(_vm.getDate) + "\n    "),
+      _vm._v("\n        Posted on: " + _vm._s(_vm.getDate) + "\n    "),
     ]),
   ])
 }

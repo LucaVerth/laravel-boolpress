@@ -15,7 +15,7 @@
             </p>
         </div>
         <div class="post-details">
-            {{ getDate }}
+            Posted on: {{ getDate }}
         </div>
     </div>
 </template>
@@ -47,9 +47,26 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: grey;
+    background-color: rgba(128, 128, 128, 0.418);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px;
     .post-content {
         padding: 1rem;
+        a{
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            &:hover {
+                text-decoration: underline;
+                color: #438cfa;
+            }
+        }
+    }
+    .post-details {
+        text-align: left;
+        padding-left: 1rem;
+        padding-bottom: 0.5rem;
     }
 }
 </style>

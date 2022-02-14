@@ -54,7 +54,8 @@ export default {
                 display: inline-block;
                 margin: 0.2rem;
                 padding: 0.15rem;
-                background-color: rgba(27, 93, 95, 0.5);
+                color: #fff;
+                background-color: #42b883;
                 border-radius: 0.35rem;
                 cursor: pointer;
                 &:hover {
