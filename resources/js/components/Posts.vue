@@ -1,6 +1,7 @@
 <template>
     <main>
         <div class="container">
+            <h1>{{ title }}</h1>
             <div class="posts-container">
                 <PostFilter
                     :category="category"
@@ -68,6 +69,7 @@ export default {
             success: true,
             error: "",
             globalPosts: true,
+            title: 'Blog Posts'
         };
     },
     mounted() {
@@ -102,6 +104,7 @@ export default {
                 .then((res) => {
                     this.posts = res.data.category.posts;
                     this.globalPosts = false;
+                    this.title = 'Blog Posts for: ' + res.data.category.name;
                     if (!res.data.success) {
                         this.error = res.data.error;
                         this.success = false;
@@ -112,6 +115,7 @@ export default {
             this.reset();
             axios.get(this.apiUrl + "/posttag/" + slug_tag).then((res) => {
                 this.posts = res.data.tags.posts;
+                this.title = 'Blog Posts for: ' + res.data.tags.name;
                 this.globalPosts = false;
                 if (!res.data.success) {
                     this.error = res.data.error;
@@ -123,6 +127,7 @@ export default {
             this.error = "";
             this.success = true;
             this.posts = null;
+            this.title = 'Blog Posts';
         },
     },
 };
@@ -133,9 +138,10 @@ main {
     min-height: calc(100vh - 210px);
     // background-color: gold;
     .posts-container {
-        padding: 3rem 0;
+        padding: 1.5rem 0;
         .posts-grid {
             display: grid;
+            margin: 2rem 0;
             gap: 1.3rem;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: auto;

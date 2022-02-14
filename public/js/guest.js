@@ -2147,6 +2147,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2164,7 +2165,8 @@ __webpack_require__.r(__webpack_exports__);
       tags: [],
       success: true,
       error: "",
-      globalPosts: true
+      globalPosts: true,
+      title: 'Blog Posts'
     };
   },
   mounted: function mounted() {
@@ -2198,6 +2200,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.apiUrl + "/postcategory/" + slug_category).then(function (res) {
         _this2.posts = res.data.category.posts;
         _this2.globalPosts = false;
+        _this2.title = 'Blog Posts for: ' + res.data.category.name;
 
         if (!res.data.success) {
           _this2.error = res.data.error;
@@ -2211,6 +2214,7 @@ __webpack_require__.r(__webpack_exports__);
       this.reset();
       axios.get(this.apiUrl + "/posttag/" + slug_tag).then(function (res) {
         _this3.posts = res.data.tags.posts;
+        _this3.title = 'Blog Posts for: ' + res.data.tags.name;
         _this3.globalPosts = false;
 
         if (!res.data.success) {
@@ -2223,6 +2227,7 @@ __webpack_require__.r(__webpack_exports__);
       this.error = "";
       this.success = true;
       this.posts = null;
+      this.title = 'Blog Posts';
     }
   }
 });
@@ -2451,7 +2456,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "main[data-v-4ac4d2f8] {\n  min-height: calc(100vh - 210px);\n}\nmain .posts-container[data-v-4ac4d2f8] {\n  padding: 3rem 0;\n}\nmain .posts-container .posts-grid[data-v-4ac4d2f8] {\n  display: grid;\n  gap: 1.3rem;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: auto;\n}\nmain .posts-container .btn[data-v-4ac4d2f8] {\n  margin: 1.5rem 0.25rem;\n}\nmain .posts-container .btn[data-v-4ac4d2f8]:hover {\n  background-color: #438cfa;\n}", ""]);
+exports.push([module.i, "main[data-v-4ac4d2f8] {\n  min-height: calc(100vh - 210px);\n}\nmain .posts-container[data-v-4ac4d2f8] {\n  padding: 1.5rem 0;\n}\nmain .posts-container .posts-grid[data-v-4ac4d2f8] {\n  display: grid;\n  margin: 2rem 0;\n  gap: 1.3rem;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: auto;\n}\nmain .posts-container .btn[data-v-4ac4d2f8] {\n  margin: 1.5rem 0.25rem;\n}\nmain .posts-container .btn[data-v-4ac4d2f8]:hover {\n  background-color: #438cfa;\n}", ""]);
 
 // exports
 
@@ -4185,6 +4190,8 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("main", [
     _c("div", { staticClass: "container" }, [
+      _c("h1", [_vm._v(_vm._s(_vm.title))]),
+      _vm._v(" "),
       _c(
         "div",
         { staticClass: "posts-container" },
